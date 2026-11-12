@@ -1,0 +1,28 @@
+﻿@page "/notes"
+@using TechNotes.Application.Notes
+@using TechNotes.Domain
+@inject INoteService noteService
+
+
+<title>Pagína Notes</title>
+
+
+<h3>Notes</h3>
+
+
+@code {
+
+    private List<Note> ListNotes = new List<Note>();
+
+    protected override void OnInitialized()
+    {
+        var result = noteService.GetAllNotes();
+
+        if(result is not null)
+        {
+            ListNotes = result.ToList();
+        }
+    }
+
+
+}
